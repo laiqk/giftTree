@@ -1,0 +1,106 @@
+#macro(pagination $page $formname)
+	#if($!{page.getResult().size()} >0 )
+	#set($listnum = ($page.linkPageNumbers.size() - 1))
+		<div class="page page-container dib-wrap">
+			#if($page.isHasPreviousPage())
+			<a href="javascript:formsub(1)" class="page_home dib">首页</a>
+			<a href="javascript:formsub($page.previousPageNumber);" class="page-pre dib"><i></i></a>
+			#end
+			#foreach( $linkPageNumber in [$page.linkPageNumbers.get(0)..$page.linkPageNumbers.get($listnum)] )
+			#if($linkPageNumber==$page.thisPageNumber)
+			<a class="active dib">$linkPageNumber</a>
+			#else
+			<a href="javascript:formsub($!linkPageNumber);" class="dib">$linkPageNumber</a>
+			#end
+			#end
+
+			#if($page.isHasNextPage())
+			<a href="javascript:formsub($page.nextPageNumber);" class="page-next dib"><i></i></a>
+			<a href="javascript:formsub($!page.lastPageNumber)" class="page_home dib">尾页</a>
+			#end
+		</div>
+		<script type="text/javascript">
+			var pageForm = '$!{formname}';
+			seajs.use("main/page");
+		</script>
+	#end
+#end
+
+#macro(pagination2 $page $formname)
+	#if($!{page.getResult().size()} >0 )
+	
+	#set($cnn=$page.totalPage)
+	#set($cnn2=$page.totalPage )
+	
+	#set($myIndex=$page.thisPageNumber - 4)
+	#if($myIndex < 0)
+		#set($myIndex = 0)
+	#end
+	
+	#set($listnum = ($myIndex + 4 ))
+	
+	#if($listnum > ($page.linkPageNumbers.size() - 1))
+		
+		#set($listnum = $page.linkPageNumbers.size() - 1)
+		#set($myIndex = ($listnum - 4))
+		#if($myIndex < 0)
+			#set($myIndex = 0)
+		#end
+	#end
+	
+	
+		<div class="page page-container">
+			#if($page.isHasPreviousPage())
+			<a href="javascript:formsub(1)" class="page_home dib">首页</a>
+			<a href="javascript:formsub($page.previousPageNumber);" class="page-pre dib"><i></i></a>
+			#end
+			#foreach( $linkPageNumber in [$page.linkPageNumbers.get($myIndex)..$page.linkPageNumbers.get($listnum)] )
+			#if($linkPageNumber==$page.thisPageNumber)
+			<a class="active dib">$linkPageNumber</a>
+			#else
+			<a href="javascript:formsub($!linkPageNumber);" class="dib">$linkPageNumber</a>
+			#end
+			#end
+
+			#if($page.isHasNextPage())
+			<a href="javascript:formsub($page.nextPageNumber);" class="page-next dib"><i></i></a>
+			<a href="javascript:formsub($!page.lastPageNumber)" class="page_home dib">尾页</a>
+			#end
+		</div>
+		<script type="text/javascript">
+			var pageForm = '$!{formname}';
+			seajs.use("main/page");
+		</script>
+	#end
+#end
+
+
+#macro(paginationAjax $page $div $url $form)
+	#if($!{page.getResult().size()} >0 )
+		<div class="pagination pagination-centered lighter" style="margin-top:15px!important;">
+			<input name="topPrevious" id="topPrevious" type="hidden" value="$page.previousPageNumber"/>
+			<input name="topNext" id="topNext" type="hidden" value="$page.nextPageNumber"/>	
+			<ol class="pagination text-center">
+				<li><a onclick="javascript:Util.pageSumbitAndLoad('$div','$url','$form','1');" >首页</a></li>
+				#if($page.thisPageNumber > 1)
+				<li><a onclick="javascript:Util.pageSumbitAndLoad('$div','$url','$form','$page.previousPageNumber');">上一页</a></li>
+				#else
+				<!-- li><a onclick="">上一页</a></li -->
+				#end
+				#foreach( $linkPageNumber in [$page.linkPageNumbers.get(0)..$page.linkPageNumbers.get($listnum)] )
+				#if($linkPageNumber==$page.thisPageNumber)
+				<li class="active"><a>$linkPageNumber</a></li>
+				#else
+				<li><a onclick="javascript:Util.pageSumbitAndLoad('$div','$url','$form','$linkPageNumber');" >$linkPageNumber</a></li>
+				#end
+				#end
+	
+				#if($page.thisPageNumber == $totalPage)
+				<li><a>下一页</a></li>
+				#else
+				<li><a onclick="javascript:Util.pageSumbitAndLoad('$div','$url','$form','$page.nextPageNumber');">下一页</a></li>
+				#end
+			</ol>
+		</div>
+  	#end
+#end

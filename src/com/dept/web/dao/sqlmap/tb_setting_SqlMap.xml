@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="tb_setting" >
+  <resultMap id="ibatorgenerated_BaseResultMap" class="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ibatorgenerated_ResultMapWithBLOBs" class="com.dept.web.dao.model.Setting" extends="tb_setting.ibatorgenerated_BaseResultMap" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    <result column="value" property="value" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="ibatorgenerated_Example_Where_Clause" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="ibatorgenerated_selectByExampleWithBLOBs" resultMap="ibatorgenerated_ResultMapWithBLOBs" parameterClass="com.dept.web.dao.model.SettingExample" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    select id, name, created_by, updated_by, created_at, updated_at, value
+    from tb_setting
+    <isParameterPresent >
+      <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="ibatorgenerated_selectByExample" resultMap="ibatorgenerated_BaseResultMap" parameterClass="com.dept.web.dao.model.SettingExample" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    select id, name, created_by, updated_by, created_at, updated_at
+    from tb_setting
+    <isParameterPresent >
+      <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="ibatorgenerated_selectByPrimaryKey" resultMap="ibatorgenerated_ResultMapWithBLOBs" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    select id, name, created_by, updated_by, created_at, updated_at, value
+    from tb_setting
+    where id = #id:INTEGER#
+  </select>
+  <delete id="ibatorgenerated_deleteByPrimaryKey" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    delete from tb_setting
+    where id = #id:INTEGER#
+  </delete>
+  <delete id="ibatorgenerated_deleteByExample" parameterClass="com.dept.web.dao.model.SettingExample" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    delete from tb_setting
+    <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+  </delete>
+  <insert id="ibatorgenerated_insert" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    insert into tb_setting (id, name, created_by, updated_by, created_at, updated_at, value)
+    values (#id:INTEGER#, #name:VARCHAR#, #createdBy:INTEGER#, #updatedBy:INTEGER#,
+      #createdAt:INTEGER#, #updatedAt:INTEGER#, #value:LONGVARCHAR#)
+  </insert>
+  <insert id="ibatorgenerated_insertSelective" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    insert into tb_setting
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        id
+      </isNotNull>
+      <isNotNull prepend="," property="name" >
+        name
+      </isNotNull>
+      <isNotNull prepend="," property="createdBy" >
+        created_by
+      </isNotNull>
+      <isNotNull prepend="," property="updatedBy" >
+        updated_by
+      </isNotNull>
+      <isNotNull prepend="," property="createdAt" >
+        created_at
+      </isNotNull>
+      <isNotNull prepend="," property="updatedAt" >
+        updated_at
+      </isNotNull>
+      <isNotNull prepend="," property="value" >
+        value
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="name" >
+        #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createdBy" >
+        #createdBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="updatedBy" >
+        #updatedBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="createdAt" >
+        #createdAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="updatedAt" >
+        #updatedAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="value" >
+        #value:LONGVARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="ibatorgenerated_countByExample" parameterClass="com.dept.web.dao.model.SettingExample" resultClass="java.lang.Integer" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    select count(*) from tb_setting
+    <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+  </select>
+  <update id="ibatorgenerated_updateByExampleSelective" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        id = #record.id:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name" >
+        name = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createdBy" >
+        created_by = #record.createdBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.updatedBy" >
+        updated_by = #record.updatedBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createdAt" >
+        created_at = #record.createdAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.updatedAt" >
+        updated_at = #record.updatedAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.value" >
+        value = #record.value:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="ibatorgenerated_updateByExampleWithBLOBs" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    set id = #record.id:INTEGER#,
+      name = #record.name:VARCHAR#,
+      created_by = #record.createdBy:INTEGER#,
+      updated_by = #record.updatedBy:INTEGER#,
+      created_at = #record.createdAt:INTEGER#,
+      updated_at = #record.updatedAt:INTEGER#,
+      value = #record.value:LONGVARCHAR#
+    <isParameterPresent >
+      <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="ibatorgenerated_updateByExample" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    set id = #record.id:INTEGER#,
+      name = #record.name:VARCHAR#,
+      created_by = #record.createdBy:INTEGER#,
+      updated_by = #record.updatedBy:INTEGER#,
+      created_at = #record.createdAt:INTEGER#,
+      updated_at = #record.updatedAt:INTEGER#
+    <isParameterPresent >
+      <include refid="tb_setting.ibatorgenerated_Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="ibatorgenerated_updateByPrimaryKeySelective" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="name" >
+        name = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createdBy" >
+        created_by = #createdBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="updatedBy" >
+        updated_by = #updatedBy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="createdAt" >
+        created_at = #createdAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="updatedAt" >
+        updated_at = #updatedAt:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="value" >
+        value = #value:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  <update id="ibatorgenerated_updateByPrimaryKeyWithBLOBs" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    set name = #name:VARCHAR#,
+      created_by = #createdBy:INTEGER#,
+      updated_by = #updatedBy:INTEGER#,
+      created_at = #createdAt:INTEGER#,
+      updated_at = #updatedAt:INTEGER#,
+      value = #value:LONGVARCHAR#
+    where id = #id:INTEGER#
+  </update>
+  <update id="ibatorgenerated_updateByPrimaryKey" parameterClass="com.dept.web.dao.model.Setting" >
+    <!--
+      提示 - 此元素相关的代码是自动生成的，请不要修改.
+    -->
+    update tb_setting
+    set name = #name:VARCHAR#,
+      created_by = #createdBy:INTEGER#,
+      updated_by = #updatedBy:INTEGER#,
+      created_at = #createdAt:INTEGER#,
+      updated_at = #updatedAt:INTEGER#
+    where id = #id:INTEGER#
+  </update>
+</sqlMap>

@@ -1,0 +1,91 @@
+##首页新手专享按钮样式(跟购买状态对应)
+#macro(noviceButtonStyle $borrow)
+	#if($!borrow.status == 1)
+		class="btn nh"
+	#elseif($!borrow.status == 2)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 3)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 5)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 6)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 7)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 11)
+		class="btn nh" disabled
+	#end
+#end
+
+##首页推荐标按钮样式(跟购买状态对应)
+#macro(recommendButtonStyle $borrow)
+	#if($!borrow.status == 1)
+		class="btn nh"
+	#elseif($!borrow.status == 2)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 3)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 5)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 6)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 7)
+		class="btn nh" disabled
+	#elseif($!borrow.status == 11)
+		class="btn nh" disabled
+	#end
+#end
+
+##列表页按钮样式(跟购买状态对应)
+#macro(listButtonStyle $borrow)
+	#if($!borrow.status == 1)
+		class="btn normal"
+	#elseif($!borrow.status == 2)
+		class="btn over"
+	#elseif($!borrow.status == 3)
+		class="btn over"
+	#elseif($!borrow.status == 5)
+		class="btn over"
+	#elseif($!borrow.status == 6)
+		class="btn over"
+	#elseif($!borrow.status == 7)
+		class="btn over"
+	#elseif($!borrow.status == 11)
+		class="btn over"
+	#end
+#end
+
+##详情页按钮样式(跟购买状态对应)
+#macro(detailButtonStyle $borrow)
+	#if($!borrow.status == 1)
+		class="btn submit f16"
+	#elseif($!borrow.status == 2)
+		class="btn submit f16" disabled
+	#elseif($!borrow.status == 3)
+		class="btn submit f16" disabled
+	#elseif($!borrow.status == 5)
+		class="btn submit f16" disabled
+	#elseif($!borrow.status == 6)
+		class="btn submit f16" disabled
+	#elseif($!borrow.status == 7)
+		class="btn submit f16" disabled
+	#elseif($!borrow.status == 11)
+		class="btn submit f16" disabled
+	#end
+#end
+
+##购买状态
+#macro(borrowStatus $borrow)
+#if($!borrow.status == 1)立即购买
+#elseif($!borrow.status == 2)已满标
+#elseif($!borrow.status == 3)募集结束
+#elseif($!borrow.status == 5)还款中
+#elseif($!borrow.status == 6)已还款
+#elseif($!borrow.status == 7)已过期
+#elseif($!borrow.status == 11)已截止
+#end
+#end
+
+##标的进度
+#macro(borrowScales $borrow)
+$!numberTool.percent($!borrow.scales)#end

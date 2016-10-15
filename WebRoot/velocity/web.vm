@@ -1,0 +1,68 @@
+## head
+#macro(head $title $keywords $description)
+	<meta charset="UTF-8">
+	<title>$!title</title>
+	<meta name="renderer" content="webkit">
+	<meta name="keywords" content="$!keywords">
+	<meta name="description" content="$!description">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+	<base href="${weburl}/">
+	<link rel="shortcut icon" href="${weburl}/icon/favicon.ico" type="image/x-icon" />
+	<link rel="icon" sizes="any" mask href="${weburl}/icon/favicon.svg">
+	<link rel="stylesheet" href="${weburl}/lib/css/normalize.min.css">
+	<script>
+	var ROOT_URL = "${weburl}";
+	var seajsEnv = {
+		'mode': 'development',
+		'debug': true
+	};
+	var _hmt = _hmt || [];
+	(function() {
+  		var hm = document.createElement("script");
+  		hm.src = "//hm.baidu.com/hm.js?ac37f9fc80fd75bd3c3c0d56ce4bc78f";
+  		var s = document.getElementsByTagName("script")[0]; 
+  		s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	<script src="${weburl}/lib/js/sea.js"></script>
+	<script src="${weburl}/lib/js/seajs-preload.js"></script>
+	<script src="${weburl}/dist/js/config.js"></script>
+	<link rel="stylesheet" href="${weburl}/dist/css/common.css">
+	<!--[if lte ie 8]>
+	<script src="${weburl}/dist/lib/ie-fixed/html5shiv.min.js"></script>
+	<link rel="stylesheet" href="${weburl}/dist/css/ie-fix.css">
+	<![endif]-->
+#end
+## 头部
+#macro(topbar $nav)
+	#set ($headnav = $nav)
+	#parse("/WEB-INF/view/topbar.html")
+#end
+
+## 尾部
+#macro(foot)
+	#parse("/WEB-INF/view/footer.html")
+#end
+
+## 尾部
+#macro(user_sidebar $sidenav)
+	${httpInclude.include("/myhome/user-sidebar.html?sidenav=$sidenav")}
+#end
+
+##截取字段
+#macro(limit $content $value)
+#if($content)
+#set($content=$content.replaceAll("&amp;", "&"))
+#set($content=$content.replaceAll("&mdash;", "—"))
+#set($content=$content.replaceAll("&ldquo;", "“"))
+#set($content=$content.replaceAll("&rdquo;", "”"))
+#set($content=$content.replaceAll("&lsquo;", "‘"))
+#set($content=$content.replaceAll("&rsquo;", "’"))
+#set($content=$content.replaceAll("&nbsp;", " "))
+#set($content=$content.replaceAll("&hellip;", "…"))
+#set($content=$content.replaceAll("&middot;", "·"))
+#set($content=$content.replaceAll("&bull;", "•"))
+#set($content=$content.replaceAll("&#039;", "'"))
+#if($!{content.length()} > $value)$!{content.toString().substring(0, $value)}#else$!content#end
+#end
+#end
